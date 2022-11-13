@@ -1,0 +1,32 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: NFTmarketplace
+    network: goerli
+    source:
+      address: "0xa232A29941e2Daf1BEb2B5d033c66073045FfE62"
+      abi: NFTmarketplace
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - NFTSold
+        - NFTlisted
+        - listDeleted
+        - withdrawSuccess
+      abis:
+        - name: NFTmarketplace
+          file: ./abis/NFTmarketplace.json
+      eventHandlers:
+        - event: NFTSold(address,address,uint256,address)
+          handler: handleNFTSold
+        - event: NFTlisted(address,uint256,uint256,address)
+          handler: handleNFTlisted
+        - event: listDeleted(address,uint256,address)
+          handler: handlelistDeleted
+        - event: withdrawSuccess(address,uint256)
+          handler: handlewithdrawSuccess
+      file: ./src/nf-tmarketplace.ts
