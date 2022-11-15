@@ -1,6 +1,6 @@
 specVersion: 0.0.4
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: NFTmarketplace
@@ -19,7 +19,7 @@ dataSources:
         - withdrawSuccess
       abis:
         - name: NFTmarketplace
-          file: ./abis/NFTmarketplace.json
+          file: NFTmarketplace/abis/NFTmarketplace.json
       eventHandlers:
         - event: NFTSold(address,address,uint256,address)
           handler: handleNFTSold
@@ -29,4 +29,4 @@ dataSources:
           handler: handlelistDeleted
         - event: withdrawSuccess(address,uint256)
           handler: handlewithdrawSuccess
-      file: ./src/nf-tmarketplace.ts
+      file: NFTmarketplace/NFTmarketplace.wasm
